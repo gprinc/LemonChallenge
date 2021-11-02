@@ -10,16 +10,32 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^5.x",
+    "apisauce": "^2.1.2",
     "react": "17.0.2",
-    "react-native": "0.66.1"
+    "react-native": "^0.61.4",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.2.3",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.9.0",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
+    "redux-persist-seamless-immutable": "^2.0.0",
+    "redux-recompose": "^3.0.0",
+    "redux-thunk": "^2.4.0",
+    "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
-    "babel-jest": "^26.6.3",
-    "eslint": "7.14.0",
-    "jest": "^26.6.3",
+    "@types/seamless-immutable": "^7.1.16",
+    "babel-jest": "^27.3.1",
+    "eslint": "^7.32.0",
+    "jest": "^27.3.1",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-test-renderer": "17.0.2"
   },
