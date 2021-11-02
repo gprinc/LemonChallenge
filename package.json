@@ -32,6 +32,7 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/react-native": "^0.66.1",
     "@types/seamless-immutable": "^7.1.16",
     "babel-jest": "^27.3.1",
     "babel-plugin-import-glob": "^2.0.0",
