@@ -1,3 +1,4 @@
+import Routes from '@constants/routes';
 import React from 'react';
 import {
   SafeAreaView,
@@ -10,14 +11,14 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import styles from './styles';
 
-const Login = () => {
+const Login = ({ navigation }: any) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const handlePress = () => console.warn("clicked");
+  const handlePress = () => navigation.navigate(Routes.Home);
 
   return (
     <SafeAreaView style={[styles.container, backgroundStyle]}>

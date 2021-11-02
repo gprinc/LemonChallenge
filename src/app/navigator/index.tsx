@@ -31,7 +31,7 @@ const AppNavigator = () => {
         <Stack.Navigator {...stackConfig}>
             <Stack.Screen name="Login" component={Login} options={screensNavOptions[Routes.Login]} />
             <Stack.Screen name="Home" component={Home} options={screensNavOptions[Routes.Home]} />
-        </Stack.Navigator>;
+        </Stack.Navigator>
     </NavigationContainer>
   );
 };
