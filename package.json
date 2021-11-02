@@ -13,6 +13,7 @@
     "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.x",
+    "@react-navigation/stack": "^5.x",
     "apisauce": "^2.1.2",
     "react": "17.0.2",
     "react-native": "0.65.1",
