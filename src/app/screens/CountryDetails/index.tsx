@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SafeAreaView, Text } from 'react-native';
+import { FlatList, SafeAreaView, Text } from 'react-native';
 import { actionCreators as countryActions } from '@redux/countries/actions';
 import { State } from '@interfaces/reduxInterfaces';
 import { CountryData } from '@interfaces/countries';
@@ -10,16 +10,26 @@ import Routes from '@constants/routes';
 import styles from './styles';
 
 const CountryDetails = () => {
-  const dispatch = useDispatch();
+    const route = useRouteWithParams<Routes.CountryDetails>();
+    const { name } = route.params;
+    const dispatch = useDispatch();
+    const countryDetails = useSelector<State, CountryData[]>((state: State) => state.countries.countryDetails);
 
-  const route = useRouteWithParams<Routes.CountryDetails>();
-  const { name } = route.params;
+    useEffect(() => {
+        dispatch(countryActions.getCountryDetails(name));
+    }, []);
 
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text>{name || 'Nothing'}</Text>
-    </SafeAreaView>
-  );
+    const renderItem = ({ item }: { item: CountryData}) => (
+        <>
+            <Text>{item.Date}</Text>
+        </>
+    )
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <FlatList data={countryDetails} renderItem={renderItem} />
+        </SafeAreaView>
+    );
 };
 
 export default CountryDetails;

@@ -12,7 +12,7 @@ import EmptyList from './components/EmptyList';
 
 const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
-  const countries = useSelector<State, any>((state: State) => state.countries.countries);
+  const countries = useSelector<State, Country[]>((state: State) => state.countries.countries);
 
   useEffect(() => {
     dispatch(countryActions.getCountries());
@@ -29,7 +29,9 @@ const Home = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} ListEmptyComponent={<EmptyList />} style={styles.fullWidth} /> 
+        {countries && countries.length != 0 ? (
+          <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.fullWidth} /> 
+        ): <EmptyList />}
         <TouchableOpacity onPress={handleLogout} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>

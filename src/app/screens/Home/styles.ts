@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   separator: {
     height: 2,
-    width: '80%',
+    width: '50%',
     backgroundColor: black,
     alignSelf: 'center'
   },

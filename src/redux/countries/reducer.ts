@@ -5,14 +5,15 @@ import { actions } from './actions';
 
 const stateDescription = {
   description: {
-    countries: []
+    countries: [],
+    countryDetails: []
   }
 };
 
 export const initialState = completeState(stateDescription);
 
 const reducerDescription = {
-  primaryActions: [actions.GET_COUNTRIES]
+  primaryActions: [actions.GET_COUNTRIES, actions.GET_COUNTRY_DETAILS]
 };
 
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
