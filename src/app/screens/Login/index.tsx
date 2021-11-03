@@ -2,7 +2,6 @@ import Routes from '@constants/routes';
 import React from 'react';
 import {
   SafeAreaView,
-  StatusBar,
   Text,
   TouchableOpacity,
   useColorScheme,
@@ -22,7 +21,6 @@ const Login = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={[styles.container, backgroundStyle]}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <TouchableOpacity onPress={handlePress}>
             <Text>Go to Home</Text>
         </TouchableOpacity>
