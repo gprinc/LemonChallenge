@@ -8,9 +8,9 @@ import { useRouteWithParams } from '@interfaces/navigation';
 import Routes from '@constants/routes';
 import Mapitem from '@app/components/MapItem';
 import Separator from '@app/components/Separator';
+import EmptyList from '@app/components/EmptyList';
 
 import styles from './styles';
-import EmptyList from '../Home/components/EmptyList';
 
 const CountryDetails = () => {
     const route = useRouteWithParams<Routes.CountryDetails>();

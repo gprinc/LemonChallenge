@@ -6,10 +6,10 @@ import { State } from '@interfaces/reduxInterfaces';
 import { Country } from '@interfaces/countries';
 import Routes from '@constants/routes';
 import Separator from '@app/components/Separator';
+import EmptyList from '@app/components/EmptyList';
 
 import styles from './styles';
 import CountryItem from './components/CountryItem';
-import EmptyList from './components/EmptyList';
 
 const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
