@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FlatList, SafeAreaView, Text } from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import { actionCreators as countryActions } from '@redux/countries/actions';
 import { State } from '@interfaces/reduxInterfaces';
 import { CountryData } from '@interfaces/countries';
 import { useRouteWithParams } from '@interfaces/navigation';
 import Routes from '@constants/routes';
+import Mapitem from '@app/components/MapItem';
+import Separator from '@app/components/Separator';
 
 import styles from './styles';
+import EmptyList from '../Home/components/EmptyList';
 
 const CountryDetails = () => {
     const route = useRouteWithParams<Routes.CountryDetails>();
@@ -19,15 +22,20 @@ const CountryDetails = () => {
         dispatch(countryActions.getCountryDetails(name));
     }, []);
 
-    const renderItem = ({ item }: { item: CountryData}) => (
-        <>
-            <Text>{item.Date}</Text>
-        </>
-    )
+    const renderItem = ({ item }: { item: CountryData}) => {
+        const items = [{ title: "Fecha: ", text: item.Date }, { title: "Casos: ", text: item.Cases }];
+        return (
+            <>
+                {items.map(({ title, text}) => <Mapitem title={title} text={text} />)}
+            </>
+        );
+    }
+    const renderSeparator = () => <Separator />
+    const renderEmpty = () => <EmptyList text="No se pudieron obtener los datos del país" />;
 
     return (
         <SafeAreaView style={styles.container}>
-            <FlatList data={countryDetails} renderItem={renderItem} />
+            <FlatList data={countryDetails} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} ListEmptyComponent={renderEmpty} />
         </SafeAreaView>
     );
 };

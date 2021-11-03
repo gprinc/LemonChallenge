@@ -5,6 +5,7 @@ import { actionCreators as countryActions } from '@redux/countries/actions';
 import { State } from '@interfaces/reduxInterfaces';
 import { Country } from '@interfaces/countries';
 import Routes from '@constants/routes';
+import Separator from '@app/components/Separator';
 
 import styles from './styles';
 import CountryItem from './components/CountryItem';
@@ -25,13 +26,12 @@ const Home = ({ navigation }: any) => {
     const handlePress = () => navigation.navigate(Routes.CountryDetails, { name: item.Slug });
     return <CountryItem handlePress={handlePress} {...item} />;
   }
-  const renderSeparator = () => <View style={styles.separator} />;
+  const renderSeparator = () => <Separator />;
+  const renderEmpty = () => <EmptyList text="No se pudieron obtener los países" />;
 
   return (
     <SafeAreaView style={styles.container}>
-        {countries && countries.length != 0 ? (
-          <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.fullWidth} /> 
-        ): <EmptyList />}
+        <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} ListEmptyComponent={renderEmpty} style={styles.fullWidth} />
         <TouchableOpacity onPress={handleLogout} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>

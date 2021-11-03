@@ -2,11 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    margin: 10
-  },
-  mapContainer: {
     flexDirection: 'row',
     marginLeft: 10
   },
@@ -17,6 +12,5 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 14
-  },
-  
+  } 
 });
