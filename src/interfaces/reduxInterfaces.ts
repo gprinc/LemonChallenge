@@ -29,7 +29,7 @@ export interface CountriesState {
   countryDetails: CountryData[];
   countryDetailsLoading: boolean;
   countryDetailsError: string | null,
-  countrDetailsOrder: CountryDetailsOrder
+  countryDetailsOrder: CountryDetailsOrder
 }
 
 export interface State {

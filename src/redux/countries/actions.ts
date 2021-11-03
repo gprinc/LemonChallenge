@@ -15,7 +15,7 @@ export const actions = createTypes(
 const TARGETS = {
   COUNTRIES: 'countries',
   COUNTRY_DETAILS: 'countryDetails',
-  COUNTRY_DETAILS_ORDER: 'countrDetailsOrder'
+  COUNTRY_DETAILS_ORDER: 'countryDetailsOrder'
 };
 
 export const actionCreators = {

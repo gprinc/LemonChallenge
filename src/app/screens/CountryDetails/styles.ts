@@ -1,3 +1,4 @@
+import { black, green, red, white } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -6,9 +7,9 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     margin: 10
   },
-  mapContainer: {
-    flexDirection: 'row',
-    marginLeft: 10
+  listContainer: {
+    width: '100%',
+    backgroundColor: white
   },
   title: {
     fontWeight: 'bold',
@@ -18,5 +19,31 @@ export default StyleSheet.create({
   text: {
     fontSize: 14
   },
-  
+  ordText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    margin: 15
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    marginLeft: 15,
+    marginBottom: 15
+  },
+  orderButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: red,
+    width: '20%'
+  },
+  textButton: {
+    fontSize: 16,
+    color: black
+  },
+  selected: {
+    backgroundColor: green,
+  },
+  textSelected: {
+    color: white
+  }
 });

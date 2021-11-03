@@ -27,11 +27,14 @@ const Home = ({ navigation }: any) => {
     return <CountryItem handlePress={handlePress} {...item} />;
   }
   const renderSeparator = () => <Separator />;
-  const renderEmpty = () => <EmptyList text="No se pudieron obtener los países" />;
 
   return (
     <SafeAreaView style={styles.container}>
-        <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} ListEmptyComponent={renderEmpty} style={styles.fullWidth} />
+        {countries && countries.length != 0 ? (
+            <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.fullWidth} />
+          ) : (
+            <EmptyList text="No se pudieron obtener los países" />
+        )}
         <TouchableOpacity onPress={handleLogout} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>

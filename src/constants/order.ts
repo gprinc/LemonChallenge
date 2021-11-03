@@ -1,7 +1,6 @@
 export enum CountryDetailsOrder {
-    DateASC = 'DateASC',
-    DateDSC = 'DateDSC',
-    CasesASC = 'CasesASC',
-    CasesDSC = 'CasesDSC'
+    DateASC = 'Fecha ASC',
+    DateDSC = 'Fecha DSC',
+    CasesASC = 'Casos ASC',
+    CasesDSC = 'Casos DSC'
 };
-    
