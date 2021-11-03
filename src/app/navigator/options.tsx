@@ -19,10 +19,10 @@ const defaultNavOptions = ({ route }: Navigation) => ({
 
 export const stackConfig = {
   screenOptions: defaultNavOptions,
-  initialRouteName: 'Login'
+  initialRouteName: Routes.Login
 };
 
-export const screensNavOptions: any = {
+export const screensNavOptions = {
     [Routes.Login]: {
       headerShown: false
     },

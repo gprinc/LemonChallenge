@@ -26,12 +26,13 @@ const Home = ({ navigation }: any) => {
   const handlePress = () => navigation.goBack();
 
   const renderItem = ({ item }: { item: Country}) => <Text>{item.Country}</Text>
+  const renderSeparator = () => <View style={styles.separator} />;
 
   return (
     <SafeAreaView style={styles.container}>
-        {countries && countries.length != 0 ? <FlatList data={countries} renderItem={renderItem} /> : <EmptyList />}
-        <TouchableOpacity onPress={handlePress}>
-            <Text>Logout</Text>
+        {countries && countries.length != 0 ? <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} /> : <EmptyList />}
+        <TouchableOpacity onPress={handlePress} style={styles.button}>
+            <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
     </SafeAreaView>
   );
