@@ -3,8 +3,7 @@ import { blue, white } from '@constants/colors';
 import { Navigation } from '@interfaces/navigation';
 
 // Default nav options for all screens
-const defaultNavOptions = ({ route }: Navigation) => ({
-    headerTitle: route.name,
+const defaultNavOptions = () => ({
     headerStyle: {
       backgroundColor: blue
     },

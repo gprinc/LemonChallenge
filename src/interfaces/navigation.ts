@@ -1,5 +1,6 @@
+import { RouteProp, NavigationProp, NavigationState, useRoute } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import Routes from '@constants/routes';
-import { RouteProp, NavigationProp, NavigationState } from '@react-navigation/native';
 
 export interface Navigation {
   route: RouteProp<Record<string, object | undefined>, string>;
@@ -11,3 +12,11 @@ export type RootStackParamList = {
   [Routes.Home]: undefined;
   [Routes.CountryDetails]: { name: string };
 };
+
+type TypedParams = keyof RootStackParamList;
+export type RouteType<T extends TypedParams> = RouteProp<RootStackParamList, T>;
+export type NavigationType<T extends TypedParams> = StackNavigationProp<RootStackParamList, T>;
+
+export function useRouteWithParams<T extends TypedParams>() {
+  return useRoute<RouteType<T>>();
+}

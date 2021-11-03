@@ -21,6 +21,10 @@ export default StyleSheet.create({
   separator: {
     height: 2,
     width: '80%',
-    backgroundColor: black
+    backgroundColor: black,
+    alignSelf: 'center'
+  },
+  fullWidth: {
+    width: '100%'
   }
 });
