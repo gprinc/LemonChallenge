@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import { ApiOkResponse, ApiErrorResponse } from 'apisauce';
+import { Country } from './countries';
 
 export interface Action<T = null, P = null, K = null> {
   [key: string]: any;
@@ -19,7 +20,14 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
   getState: () => State
 ) => void;
 
+export interface CountriesState {
+  countries: Country[];
+  countriesLoading: boolean;
+  countriesError: string | null
+}
+
 export interface State {
+  countries: CountriesState;
 }
 
 export interface ReduxObject {

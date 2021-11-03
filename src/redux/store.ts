@@ -10,6 +10,7 @@ import {
 import { ImmutableObject } from 'seamless-immutable';
 import { State } from '@interfaces/reduxInterfaces';
 
+import countries from './countries/reducer';
 
 const transformerConfig = {
   whitelistPerReducer: {
@@ -27,7 +28,7 @@ const persistConfig = {
 configureMergeState((state: ImmutableObject<State>, diff: State) => state.merge(diff));
 
 const reducers = combineReducers({
-  
+  countries
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
