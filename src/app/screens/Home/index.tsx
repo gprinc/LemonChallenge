@@ -7,6 +7,7 @@ import { Country } from '@interfaces/countries';
 import Routes from '@constants/routes';
 import Separator from '@app/components/Separator';
 import EmptyList from '@app/components/EmptyList';
+import { Loading } from '@app/components/Loadable';
 
 import styles from './styles';
 import CountryItem from './components/CountryItem';
@@ -15,6 +16,7 @@ import { CountryDetailsOrder } from '@constants/order';
 const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const countries = useSelector<State, Country[]>((state: State) => state.countries.countries);
+  const countriesLoading = useSelector<State, boolean>((state: State) => state.countries.countriesLoading);
 
   useEffect(() => {
     dispatch(countryActions.getCountries());
@@ -34,7 +36,9 @@ const Home = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        {countries && countries.length != 0 ? (
+        {countriesLoading ? (
+          <Loading />
+        ) : countries && countries.length != 0 ? (
             <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.fullWidth} />
           ) : (
             <EmptyList text="No se pudieron obtener los países" />
