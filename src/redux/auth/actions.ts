@@ -3,6 +3,7 @@ import { createTypes, completeTypes } from 'redux-recompose';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import { Action } from '@interfaces/reduxInterfaces';
+import { getAuth, removeAuth, setAuth } from '@services/AuthService';
 
 export const actions = createTypes(
   completeTypes({
@@ -19,12 +20,13 @@ const TARGETS = {
 export const actionCreators = {
     init: () => async (dispatch: Dispatch<Action<any>>) => {
         actionCreators.setInitialLoading(true);
+        const isLogged = await getAuth();
         const isSignedIn = await GoogleSignin.isSignedIn();
-        if (isSignedIn)
+        if (isLogged || isSignedIn)
             dispatch({
                 type: actions.SIGN_IN_SUCCESS,
                 target: TARGETS.SIGN_IN,
-                payload: isSignedIn
+                payload: true
             });
         actionCreators.setInitialLoading(false);
     },
@@ -41,14 +43,13 @@ export const actionCreators = {
         });
         try {
             await GoogleSignin.hasPlayServices();
-            const { idToken } = await GoogleSignin.signIn();
-            const credential = auth.GoogleAuthProvider.credential(idToken);
-            await auth().signInWithCredential(credential);
+            const response = await GoogleSignin.signIn();
             dispatch({
                 type: actions.SIGN_IN_SUCCESS,
                 target: TARGETS.SIGN_IN,
                 payload: true
             });
+            await setAuth(true);
         } catch (error: any) {
             let errorText = '';
             let type = actions.SIGN_IN_FAILURE;
@@ -59,8 +60,9 @@ export const actionCreators = {
             } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
                 errorText = 'Los Play Services del dispositivo están desactualizados o no disponibles'
             } else {
-                // TODO check why it fails evne when it doesn't
+                // TODO check why it fails even when it doesn't
                 type = actions.SIGN_IN_SUCCESS;
+                await setAuth(true);
             }
             dispatch({ type, target: TARGETS.SIGN_IN, payload: errorText });
         }
@@ -70,6 +72,7 @@ export const actionCreators = {
             type: actions.SIGN_OUT,
             target: TARGETS.SIGN_IN
         });
+        removeAuth();
         try {
             await GoogleSignin.revokeAccess();
             await GoogleSignin.signOut();
