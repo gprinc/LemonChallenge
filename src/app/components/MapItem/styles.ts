@@ -1,3 +1,4 @@
+import { black } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -8,9 +9,11 @@ export default StyleSheet.create({
   title: {
     fontWeight: 'bold',
     marginRight: 5,
-    fontSize: 16
+    fontSize: 16,
+    color: black
   },
   text: {
-    fontSize: 14
+    fontSize: 14,
+    color: black
   } 
 });

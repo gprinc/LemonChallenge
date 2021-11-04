@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { red } from '@constants/colors';
+import { red, white } from '@constants/colors';
 
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: white
   },
   googleButton: {
     width: '80%',

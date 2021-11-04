@@ -1,3 +1,4 @@
+import { black } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 
@@ -9,7 +10,8 @@ export default StyleSheet.create({
   },
   country: {
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 20,
+    color: black
   },
   mapContainer: {
     flexDirection: 'row',
@@ -18,10 +20,12 @@ export default StyleSheet.create({
   title: {
     fontWeight: 'bold',
     marginRight: 5,
-    fontSize: 16
+    fontSize: 16,
+    color: black
   },
   text: {
-    fontSize: 14
+    fontSize: 14,
+    color: black
   },
   
 });

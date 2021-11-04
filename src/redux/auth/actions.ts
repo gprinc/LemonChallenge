@@ -59,6 +59,7 @@ export const actionCreators = {
             } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
                 errorText = 'Los Play Services del dispositivo están desactualizados o no disponibles'
             } else {
+                // TODO check why it fails evne when it doesn't
                 type = actions.SIGN_IN_SUCCESS;
             }
             dispatch({ type, target: TARGETS.SIGN_IN, payload: errorText });

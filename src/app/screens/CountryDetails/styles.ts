@@ -5,7 +5,8 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    margin: 10
+    margin: 10,
+    backgroundColor: white
   },
   listContainer: {
     width: '100%'
@@ -13,10 +14,12 @@ export default StyleSheet.create({
   title: {
     fontWeight: 'bold',
     marginRight: 5,
-    fontSize: 16
+    fontSize: 16,
+    color: black
   },
   text: {
-    fontSize: 14
+    fontSize: 14,
+    color: black
   },
   ordText: {
     fontWeight: 'bold',

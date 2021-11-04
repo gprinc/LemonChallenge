@@ -26,6 +26,7 @@ const CountryDetails = () => {
         dispatch(countryActions.getCountryDetails(name));
     }, []);
 
+    const keyExtractor = (item: CountryData) => `${item.CityCode}-${item.Date}`;
     const renderItem = ({ item }: { item: CountryData}) => {
         const items = [{ title: "Fecha: ", text: item.Date }, { title: "Casos: ", text: item.Cases }];
         return (
@@ -61,6 +62,7 @@ const CountryDetails = () => {
                 <FlatList
                     data={countryDetails}
                     renderItem={renderItem}
+                    keyExtractor={keyExtractor}
                     ItemSeparatorComponent={renderSeparator}
                     style={styles.listContainer} />
             ) : (

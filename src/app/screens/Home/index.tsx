@@ -26,6 +26,7 @@ const Home = ({ navigation }: any) => {
   // TODO change this
   const handleLogout = () => dispatch(authActions.signOut());
 
+  const keyExtractor = (item: Country) => `${item.Country}-${item.Slug}`;
   const renderItem = ({ item }: { item: Country}) => {
     const handlePress = () => {
       dispatch(countryActions.setCountryDetailsOrder(CountryDetailsOrder.DateDSC))
@@ -40,7 +41,12 @@ const Home = ({ navigation }: any) => {
         {countriesLoading ? (
           <Loading />
         ) : countries && countries.length != 0 ? (
-            <FlatList data={countries} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.fullWidth} />
+            <FlatList
+              data={countries}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              ItemSeparatorComponent={renderSeparator}
+              style={styles.fullWidth} />
           ) : (
             <EmptyList text="No se pudieron obtener los países" />
         )}
