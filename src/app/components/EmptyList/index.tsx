@@ -3,9 +3,13 @@ import { View, Text } from 'react-native';
 
 import styles from './styles';
 
-const EmptyList = () => (
+type Props = {
+  text: string;
+}
+
+const EmptyList = ({ text }: Props) => (
     <View style={styles.container}>
-      <Text style={styles.text}>There are no countries to be displayed right now</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
 );
 

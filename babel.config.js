@@ -10,11 +10,13 @@ module.exports = {
         extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.ts', '.tsx', '.json'],
         alias: {
           '@app': './src/app',
+          '@components': './src/app/components',
           '@constants': './src/constants',
           '@interfaces': './src/interfaces',
           '@redux': './src/redux',
           '@screens': './src/app/screens',
-          '@services': './src/services'
+          '@services': './src/services',
+          '@utils': './src/utils'
         }
       }
     ]

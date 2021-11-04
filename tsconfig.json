@@ -15,10 +15,12 @@
       "paths": {
         "@app/*": ["src/app/*"],
         "@constants/*": ["src/constants/*"],
+        "@components/*": ["src/app/components/*"],
         "@interfaces/*": ["src/interfaces/*"],
         "@redux/*": ["src/redux/*"],
         "@screens/*": ["./src/app/screens/*"],
-        "@services/*": ["src/services/*"]
+        "@services/*": ["src/services/*"],
+        "@utils/*": ["src/utils/*"]
       },
       "skipLibCheck": true
     },

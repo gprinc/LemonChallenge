@@ -11,7 +11,7 @@ type Props = {
 }
 
 const CountryItem = ({ Country, Slug, ISO2, handlePress }: Props) => {
-    const items = [{ title: "Slug", text: Slug }, { title: "ISO2", text: ISO2 }];
+    const items = [{ title: "Slug: ", text: Slug }, { title: "ISO2: ", text: ISO2 }];
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
             <Text style={styles.country}>{Country}</Text>
