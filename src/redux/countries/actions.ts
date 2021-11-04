@@ -32,7 +32,7 @@ export const actionCreators = {
   }),
   setCountryDetailsOrder: (order: CountryDetailsOrder) => (dispatch: Dispatch<Action<CountryDetailsOrder>>) => {
     dispatch({
-      type: actions.COUNTRY_DETAILS_ORDER,
+      type: actions.SET_COUNTRY_DETAILS_ORDER,
       target: TARGETS.COUNTRY_DETAILS_ORDER,
       payload: order
     });

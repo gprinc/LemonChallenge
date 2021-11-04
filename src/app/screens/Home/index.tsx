@@ -10,6 +10,7 @@ import EmptyList from '@app/components/EmptyList';
 
 import styles from './styles';
 import CountryItem from './components/CountryItem';
+import { CountryDetailsOrder } from '@constants/order';
 
 const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
@@ -23,7 +24,10 @@ const Home = ({ navigation }: any) => {
   const handleLogout = () => navigation.goBack();
 
   const renderItem = ({ item }: { item: Country}) => {
-    const handlePress = () => navigation.navigate(Routes.CountryDetails, { name: item.Slug });
+    const handlePress = () => {
+      dispatch(countryActions.setCountryDetailsOrder(CountryDetailsOrder.DateDSC))
+      navigation.navigate(Routes.CountryDetails, { name: item.Slug });
+    }
     return <CountryItem handlePress={handlePress} {...item} />;
   }
   const renderSeparator = () => <Separator />;

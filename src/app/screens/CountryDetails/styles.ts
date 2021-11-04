@@ -8,8 +8,7 @@ export default StyleSheet.create({
     margin: 10
   },
   listContainer: {
-    width: '100%',
-    backgroundColor: white
+    width: '100%'
   },
   title: {
     fontWeight: 'bold',
