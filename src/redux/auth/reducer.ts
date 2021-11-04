@@ -7,6 +7,9 @@ import { actions } from './actions';
 const stateDescription = {
   description: {
     user: false
+  },
+  ignoredTargets: {
+    initialLoading: false
   }
 };
 
@@ -20,7 +23,9 @@ const reducerDescription = {
     [actions.SIGN_IN_FAILURE]: (state: ImmutableObject<AuthState>, action: Action<string>) =>
       state.merge({ [action.target as string]: false, userError: action.payload, userLoading: false }),
     [actions.SIGN_IN_SUCCESS]: (state: ImmutableObject<AuthState>, action: Action<boolean>) =>
-      state.merge({ [action.target as string]: true, userError: '', userLoading: false })
+      state.merge({ [action.target as string]: true, userError: '', userLoading: false }),
+    [actions.SET_INITIAL_LOADING]: (state: ImmutableObject<AuthState>, action: Action<boolean>) =>
+      state.merge({ initialLoading: action.payload })
   }
 };
 

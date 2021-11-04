@@ -1,25 +1,15 @@
-import React, { useEffect } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import React from 'react';
+import { SafeAreaView, Text } from 'react-native';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as authActions } from '@redux/auth/actions';
 import { State } from '@interfaces/reduxInterfaces';
 
 import styles from './styles';
 
-const Login = ({ navigation }: any) => {
+const Login = () => {
   const dispatch = useDispatch();
   const userError = useSelector<State, string | null>((state: State) => state.auth.userError);
-
-  useEffect(() => {
-    GoogleSignin.configure({
-      scopes: ['email'],
-      webClientId:
-        '285076797668-k3nkkctd98mrla4fjip7e563psd514bc.apps.googleusercontent.com',
-      offlineAccess: true
-    });
-  }, []);
-
 
   const handleSignIn = () => dispatch(authActions.signIn());
 

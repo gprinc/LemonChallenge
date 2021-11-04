@@ -7,7 +7,7 @@ import { Action } from '@interfaces/reduxInterfaces';
 export const actions = createTypes(
   completeTypes({
     primaryActions: ['SIGN_IN'],
-    ignoredActions: ['SIGN_OUT'] 
+    ignoredActions: ['SIGN_OUT', 'SET_INITIAL_LOADING'] 
   }),
   '@@AUTH'
 );
@@ -18,11 +18,20 @@ const TARGETS = {
 
 export const actionCreators = {
     init: () => async (dispatch: Dispatch<Action<any>>) => {
+        actionCreators.setInitialLoading(true);
         const isSignedIn = await GoogleSignin.isSignedIn();
+        if (isSignedIn)
+            dispatch({
+                type: actions.SIGN_IN_SUCCESS,
+                target: TARGETS.SIGN_IN,
+                payload: isSignedIn
+            });
+        actionCreators.setInitialLoading(false);
+    },
+    setInitialLoading: (bool: boolean) => (dispatch: Dispatch<Action<any>>) => {
         dispatch({
-            type: actions.SIGN_IN_SUCCESS,
-            target: TARGETS.SIGN_IN,
-            payload: isSignedIn
+            type: actions.SET_INITIAL_LOADING,
+            payload: bool
         });
     },
     signIn: () => async (dispatch: Dispatch<Action<any>>) => {

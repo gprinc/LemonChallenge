@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from '@constants/routes';
@@ -6,11 +7,11 @@ import { RootStackParamList } from '@interfaces/navigation';
 import Login from '@screens/Login';
 import Home from '@screens/Home';
 import CountryDetails from '@screens/CountryDetails';
+import withLoadable from '@components/Loadable'
+import { State } from '@interfaces/reduxInterfaces';
 
 import { navigationRef, getActiveRoute, getRoute } from './helper';
 import { stackConfig, screensNavOptions } from './options';
-import { useSelector } from 'react-redux';
-import { State } from '@interfaces/reduxInterfaces';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -53,4 +54,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default withLoadable(() => useSelector((state: State) => state.auth.initialLoading))(AppNavigator);

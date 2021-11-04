@@ -31,6 +31,7 @@ export interface AuthState {
   user: boolean;
   userLoading: boolean;
   userError: string | null;
+  initialLoading: boolean;
 }
 
 export interface CountriesState {
