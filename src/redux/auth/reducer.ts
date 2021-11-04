@@ -16,9 +16,11 @@ const reducerDescription = {
   primaryActions: [actions.SIGN_IN],
   override: {
     [actions.SIGN_OUT]: (state: ImmutableObject<AuthState>) =>
-      state.merge({ user: undefined }),
+      state.merge({ user: false }),
     [actions.SIGN_IN_FAILURE]: (state: ImmutableObject<AuthState>, action: Action<string>) =>
-      state.merge({ [action.target as string]: undefined, userError: action.payload })
+      state.merge({ [action.target as string]: false, userError: action.payload, userLoading: false }),
+    [actions.SIGN_IN_SUCCESS]: (state: ImmutableObject<AuthState>, action: Action<boolean>) =>
+      state.merge({ [action.target as string]: true, userError: '', userLoading: false })
   }
 };
 

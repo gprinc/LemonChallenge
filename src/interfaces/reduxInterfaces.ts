@@ -28,7 +28,7 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
 ) => void;
 
 export interface AuthState {
-  user?: any;
+  user: boolean;
   userLoading: boolean;
   userError: string | null;
 }

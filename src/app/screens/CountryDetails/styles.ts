@@ -33,7 +33,7 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     backgroundColor: red,
-    width: '20%'
+    flex: 0.22
   },
   textButton: {
     fontSize: 16,

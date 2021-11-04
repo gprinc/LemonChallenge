@@ -1,4 +1,3 @@
-import Routes from '@constants/routes';
 import React, { useEffect } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
@@ -23,20 +22,16 @@ const Login = ({ navigation }: any) => {
 
 
   const handleSignIn = () => dispatch(authActions.signIn());
-  const handlePress = () => navigation.navigate(Routes.Home);
 
   return (
     <SafeAreaView style={styles.container}>
-        <TouchableOpacity onPress={handlePress}>
-            <Text>Go to Home</Text>
-        </TouchableOpacity>
         <GoogleSigninButton
           style={styles.googleButton}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={handleSignIn}
         />
-        {userError && <Text style={styles.errorText}>{userError}</Text>}
+        <Text style={styles.errorText}>{userError || ''}</Text>
     </SafeAreaView>
   );
 };

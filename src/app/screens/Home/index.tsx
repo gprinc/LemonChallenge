@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { actionCreators as countryActions } from '@redux/countries/actions';
+import { actionCreators as authActions } from '@redux/auth/actions';
 import { State } from '@interfaces/reduxInterfaces';
 import { Country } from '@interfaces/countries';
 import Routes from '@constants/routes';
@@ -23,7 +24,7 @@ const Home = ({ navigation }: any) => {
   }, []);
 
   // TODO change this
-  const handleLogout = () => navigation.goBack();
+  const handleLogout = () => dispatch(authActions.signOut());
 
   const renderItem = ({ item }: { item: Country}) => {
     const handlePress = () => {

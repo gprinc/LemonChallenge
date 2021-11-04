@@ -17,11 +17,12 @@ const TARGETS = {
 };
 
 export const actionCreators = {
-    init: (user: any) => (dispatch: Dispatch<Action<any>>) => {
+    init: () => async (dispatch: Dispatch<Action<any>>) => {
+        const isSignedIn = await GoogleSignin.isSignedIn();
         dispatch({
             type: actions.SIGN_IN_SUCCESS,
             target: TARGETS.SIGN_IN,
-            payload: user
+            payload: isSignedIn
         });
     },
     signIn: () => async (dispatch: Dispatch<Action<any>>) => {
@@ -37,11 +38,11 @@ export const actionCreators = {
             dispatch({
                 type: actions.SIGN_IN_SUCCESS,
                 target: TARGETS.SIGN_IN,
-                payload: credential
+                payload: true
             });
-            return { ok: true, data: credential };
         } catch (error: any) {
             let errorText = '';
+            let type = actions.SIGN_IN_FAILURE;
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 errorText = 'Se canceló el ingreso a través de Google';
             } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -49,13 +50,9 @@ export const actionCreators = {
             } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
                 errorText = 'Los Play Services del dispositivo están desactualizados o no disponibles'
             } else {
-                errorText = 'Ocurrió un problema al ingresar, intente denuevo mas tarde'
+                type = actions.SIGN_IN_SUCCESS;
             }
-            dispatch({
-                type: actions.SIGN_IN_FAILURE,
-                target: TARGETS.SIGN_IN,
-                payload: errorText
-            });
+            dispatch({ type, target: TARGETS.SIGN_IN, payload: errorText });
         }
     },
     signOut: () => async (dispatch: Dispatch<Action<any>>) => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { actionCreators as countryActions } from '@redux/countries/actions';
@@ -58,7 +58,11 @@ const CountryDetails = () => {
             {countryDetailsLoading ? (
                 <Loading />
             ) : countryDetails && countryDetails.length != 0 ? (
-                <FlatList data={countryDetails} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.listContainer} />
+                <FlatList
+                    data={countryDetails}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={renderSeparator}
+                    style={styles.listContainer} />
             ) : (
                 <EmptyList text="No se pudieron obtener los datos del país" />
             )}

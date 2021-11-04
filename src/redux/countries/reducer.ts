@@ -24,7 +24,7 @@ const reducerDescription = {
   primaryActions: [actions.GET_COUNTRIES, actions.GET_COUNTRY_DETAILS],
   override: {
     [actions.GET_COUNTRY_DETAILS_SUCCESS]: (state: ImmutableObject<CountriesState>, action: Action<CountryData[]>) =>
-      state.merge({ [action.target as string]: orderCountryDetails(action.payload) }),
+      state.merge({ [action.target as string]: orderCountryDetails(action.payload), countryDetailsLoading: false }),
     [actions.SET_COUNTRY_DETAILS_ORDER]: (state: ImmutableObject<CountriesState>, action: Action<CountryDetailsOrder>) =>
       state.merge({ [action.target as string]: action.payload, countryDetails: orderCountryDetails(state.countryDetails.asMutable(), action.payload) })
   }
