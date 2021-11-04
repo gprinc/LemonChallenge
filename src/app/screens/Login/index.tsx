@@ -1,21 +1,16 @@
 import Routes from '@constants/routes';
 import React, { useEffect } from 'react';
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View
-} from 'react-native';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-google-signin/google-signin';
-import { signIn } from '@services/AuthService';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as authActions } from '@redux/auth/actions';
+import { State } from '@interfaces/reduxInterfaces';
 
 import styles from './styles';
 
 const Login = ({ navigation }: any) => {
+  const dispatch = useDispatch();
+  const userError = useSelector<State, string | null>((state: State) => state.auth.userError);
 
   useEffect(() => {
     GoogleSignin.configure({
@@ -27,6 +22,7 @@ const Login = ({ navigation }: any) => {
   }, []);
 
 
+  const handleSignIn = () => dispatch(authActions.signIn());
   const handlePress = () => navigation.navigate(Routes.Home);
 
   return (
@@ -34,16 +30,13 @@ const Login = ({ navigation }: any) => {
         <TouchableOpacity onPress={handlePress}>
             <Text>Go to Home</Text>
         </TouchableOpacity>
-        <View style={{ width: '100%' }}>
-            <View style={{ alignItems: 'center' }}>
-              <GoogleSigninButton
-                style={{width: 192, height: 48}}
-                size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Dark}
-                onPress={signIn}
-              />
-            </View>
-          </View>
+        <GoogleSigninButton
+          style={styles.googleButton}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={handleSignIn}
+        />
+        {userError && <Text style={styles.errorText}>{userError}</Text>}
     </SafeAreaView>
   );
 };
