@@ -19,6 +19,7 @@ const CountryDetails = () => {
     const { name } = route.params;
     const dispatch = useDispatch();
     const countryDetails = useSelector<State, CountryData[]>((state: State) => state.countries.countryDetails);
+    const countryDetailsError = useSelector<State, string | null>((state: State) => state.countries.countryDetailsError);
     const countryDetailsLoading = useSelector<State, boolean>((state: State) => state.countries.countryDetailsLoading);
     const countryDetailsOrder = useSelector<State, CountryDetailsOrder>((state: State) => state.countries.countryDetailsOrder);
 
@@ -66,8 +67,9 @@ const CountryDetails = () => {
                     ItemSeparatorComponent={renderSeparator}
                     style={styles.listContainer} />
             ) : (
-                <EmptyList text="No se pudieron obtener los datos del país" />
+                <EmptyList text="No existen datos del país" />
             )}
+            {countryDetailsError && <Text style={styles.errorText}>No se pudieron obtener los datos del país</Text>}
         </SafeAreaView>
     );
 };

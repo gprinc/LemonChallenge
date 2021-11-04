@@ -47,5 +47,10 @@ export default StyleSheet.create({
   },
   textSelected: {
     color: white
+  },
+  errorText: {
+    color: red,
+    fontSize: 20,
+    marginTop: 30
   }
 });

@@ -17,6 +17,7 @@ import { CountryDetailsOrder } from '@constants/order';
 const Home = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const countries = useSelector<State, Country[]>((state: State) => state.countries.countries);
+  const countriesError = useSelector<State, string | null>((state: State) => state.countries.countriesError);
   const countriesLoading = useSelector<State, boolean>((state: State) => state.countries.countriesLoading);
 
   useEffect(() => {
@@ -48,8 +49,9 @@ const Home = ({ navigation }: any) => {
               ItemSeparatorComponent={renderSeparator}
               style={styles.fullWidth} />
           ) : (
-            <EmptyList text="No se pudieron obtener los países" />
+            <EmptyList text="No hay países que mostrar" />
         )}
+        {countriesError && <Text style={styles.errorText}>No se pudieron obtener los países</Text>}
         <TouchableOpacity onPress={handleLogout} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>

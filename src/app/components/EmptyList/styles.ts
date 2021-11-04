@@ -1,3 +1,4 @@
+import { black } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 
@@ -9,6 +10,7 @@ export default StyleSheet.create({
   },
   text: {
       fontSize: 24,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      color: black
   }
 });

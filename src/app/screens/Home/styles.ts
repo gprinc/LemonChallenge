@@ -1,4 +1,4 @@
-import { black, blue, white } from '@constants/colors';
+import { black, blue, white, red } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 
@@ -27,5 +27,10 @@ export default StyleSheet.create({
   },
   fullWidth: {
     width: '100%'
+  },
+  errorText: {
+    color: red,
+    fontSize: 20,
+    marginTop: 30
   }
 });
