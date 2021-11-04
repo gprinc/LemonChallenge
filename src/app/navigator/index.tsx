@@ -9,10 +9,26 @@ import CountryDetails from '@screens/CountryDetails';
 
 import { navigationRef, getActiveRoute, getRoute } from './helper';
 import { stackConfig, screensNavOptions } from './options';
+import { useSelector } from 'react-redux';
+import { State } from '@interfaces/reduxInterfaces';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+const AuthStack = () => (
+  <>
+    <Stack.Screen name={Routes.Login} component={Login} options={screensNavOptions[Routes.Login]} />
+  </>
+);
+
+const HomeStack = () => (
+  <>
+    <Stack.Screen name={Routes.Home} component={Home} options={screensNavOptions[Routes.Home]} />
+    <Stack.Screen name={Routes.CountryDetails} component={CountryDetails} options={({ route }) => ({ title: route?.params?.name })} />
+  </>
+);
+
 const AppNavigator = () => {
+  const user = useSelector((state: State) => state.auth.user);
   const [routeName, setRouteName] = useState<string | null>(null);
 
   const onStateChange = (state?: NavigationState) => {
@@ -31,9 +47,7 @@ const AppNavigator = () => {
       }}
       onStateChange={onStateChange}>
         <Stack.Navigator {...stackConfig}>
-            <Stack.Screen name={Routes.Login} component={Login} options={screensNavOptions[Routes.Login]} />
-            <Stack.Screen name={Routes.Home} component={Home} options={screensNavOptions[Routes.Home]} />
-            <Stack.Screen name={Routes.CountryDetails} component={CountryDetails} options={({ route }) => ({ title: route?.params?.name })} />
+          {user ? HomeStack() : AuthStack()}
         </Stack.Navigator>
     </NavigationContainer>
   );

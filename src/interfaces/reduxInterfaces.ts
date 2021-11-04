@@ -4,6 +4,11 @@ import { CountryDetailsOrder } from '@constants/order';
 
 import { Country, CountryData } from './countries';
 
+export type Response = {
+  ok: boolean;
+  data: any;
+}
+
 export interface Action<T = null, P = null, K = null> {
   [key: string]: any;
   type: string;
@@ -22,6 +27,12 @@ export type DispatcheableAction<T = null, P = null, K = null> = (
   getState: () => State
 ) => void;
 
+export interface AuthState {
+  user: boolean;
+  userLoading: boolean;
+  userError: string | null;
+}
+
 export interface CountriesState {
   countries: Country[];
   countriesLoading: boolean;
@@ -33,6 +44,7 @@ export interface CountriesState {
 }
 
 export interface State {
+  auth: AuthState;
   countries: CountriesState;
 }
 

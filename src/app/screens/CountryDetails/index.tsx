@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FlatList, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { actionCreators as countryActions } from '@redux/countries/actions';
@@ -12,12 +12,14 @@ import EmptyList from '@app/components/EmptyList';
 
 import styles from './styles';
 import { CountryDetailsOrder } from '@constants/order';
+import { Loading } from '@app/components/Loadable';
 
 const CountryDetails = () => {
     const route = useRouteWithParams<Routes.CountryDetails>();
     const { name } = route.params;
     const dispatch = useDispatch();
     const countryDetails = useSelector<State, CountryData[]>((state: State) => state.countries.countryDetails);
+    const countryDetailsLoading = useSelector<State, boolean>((state: State) => state.countries.countryDetailsLoading);
     const countryDetailsOrder = useSelector<State, CountryDetailsOrder>((state: State) => state.countries.countryDetailsOrder);
 
     useEffect(() => {
@@ -53,9 +55,15 @@ const CountryDetails = () => {
             <View style={styles.buttonsContainer}>
                 {buttons.map(renderButton)}
             </View>
-            {countryDetails && countryDetails.length != 0 ? (
-                <FlatList data={countryDetails} renderItem={renderItem} ItemSeparatorComponent={renderSeparator} style={styles.listContainer} />
-            ): (
+            {countryDetailsLoading ? (
+                <Loading />
+            ) : countryDetails && countryDetails.length != 0 ? (
+                <FlatList
+                    data={countryDetails}
+                    renderItem={renderItem}
+                    ItemSeparatorComponent={renderSeparator}
+                    style={styles.listContainer} />
+            ) : (
                 <EmptyList text="No se pudieron obtener los datos del país" />
             )}
         </SafeAreaView>
